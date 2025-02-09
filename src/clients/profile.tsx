@@ -56,7 +56,6 @@ function MyProfileComponent() {
 					<SNSLinkComponent />
 				</div>
 			</div>
-			<div></div>
 		</div>
 	);
 }
