@@ -19,6 +19,11 @@ app.get("/", (c) => {
 					) : (
 						<link rel="stylesheet" href="/src/style.css" />
 					)}
+					{import.meta.env.PROD ? (
+						<script type="module" src="/static/client.js" />
+					) : (
+						<script type="module" src="/src/client.tsx" />
+					)}
 					<link
 						rel="shortcut icon"
 						href="/static/favicon.ico"
@@ -28,11 +33,6 @@ app.get("/", (c) => {
 				</head>
 				<body>
 					<div id="root" />
-					{import.meta.env.PROD ? (
-						<script type="module" src="/static/client.js" />
-					) : (
-						<script type="module" src="/src/client.tsx" />
-					)}
 				</body>
 			</html>,
 		),
