@@ -9,11 +9,13 @@
 		"deploy": "npm run build && wrangler pages deploy",
 		"prepare": "husky"
 	},
-  "lint-staged": {
-    "*.{ts,tsx}": "biome check --write"
-  },
+	"lint-staged": {
+		"*.{ts,tsx}": "biome check --write"
+	},
 	"dependencies": {
-		"hono": "^4.6.20"
+		"@tailwindcss/vite": "^4.0.5",
+		"hono": "^4.6.20",
+		"tailwindcss": "^4.0.5"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
