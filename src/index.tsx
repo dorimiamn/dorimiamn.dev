@@ -1,5 +1,4 @@
 import { Hono } from "hono";
-import styles from "./style.css?url";
 
 const app = new Hono();
 
@@ -14,7 +13,11 @@ app.get("/", (c) => {
 		<html lang="ja">
 			<head>
 				<link href="/static/style.css" rel="stylesheet" />
-				<link rel="stylesheet" href={styles} />
+				{import.meta.env.PROD ? (
+					<link rel="stylesheet" href="/static/style.css" />
+				) : (
+					<link rel="stylesheet" href="/src/style.css" />
+				)}
 				<link
 					rel="shortcut icon"
 					href="/static/favicon.ico"
