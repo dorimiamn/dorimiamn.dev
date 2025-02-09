@@ -2,27 +2,29 @@ import { useState } from "hono/jsx/dom";
 import { createRoot } from "hono/jsx/dom/client";
 import { Profile } from "./clients/profile";
 
-function App() {
+export default function Header() {
 	return (
-		<>
-			<h1>Hello, Hono with JSX!</h1>
-			<h2>Example of useState()</h2>
-			<Counter />
-			<h2>Example of API fetch()</h2>
-			<Profile />
-		</>
+		<nav className="flex flex-row h-12 w-4/6 mx-auto my-4">
+			<div className="basis-5/6">
+				<a href="/">
+					dorimiamn's <br /> Portfolio
+				</a>
+			</div>
+			<div className="basis-1/6 text-center">
+				<a href="/blog">Blog</a>
+			</div>
+		</nav>
 	);
 }
 
-function Counter() {
-	const [count, setCount] = useState(0);
+function App() {
 	return (
-		<div>
-			<p>Count: {count}</p>
-			<button type="button" onClick={() => setCount(count + 1)}>
-				Increment
-			</button>
-		</div>
+		<>
+			<header>
+				<Header />
+			</header>
+			<Profile />
+		</>
 	);
 }
 
