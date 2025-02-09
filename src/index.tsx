@@ -15,6 +15,11 @@ app.get("/", (c) => {
 			<head>
 				<link href="/static/style.css" rel="stylesheet" />
 				<link rel="stylesheet" href={styles} />
+				<link
+					rel="shortcut icon"
+					href="/static/favicon.ico"
+					type="image/x-icon"
+				/>
 				<title>Dorimiamn's Site</title>
 			</head>
 			<body>
