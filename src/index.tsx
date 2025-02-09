@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import styles from "./style.css?url";
 
 const app = new Hono();
 
@@ -13,6 +14,7 @@ app.get("/", (c) => {
 		<html lang="ja">
 			<head>
 				<link href="/static/style.css" rel="stylesheet" />
+				<link rel="stylesheet" href={styles} />
 				<title>Dorimiamn's Site</title>
 			</head>
 			<body>
