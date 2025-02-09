@@ -1,5 +1,6 @@
 import { useState } from "hono/jsx/dom";
 import { createRoot } from "hono/jsx/dom/client";
+import { Profile } from "./clients/profile";
 
 function App() {
 	return (
@@ -8,6 +9,7 @@ function App() {
 			<h2>Example of useState()</h2>
 			<Counter />
 			<h2>Example of API fetch()</h2>
+			<Profile />
 		</>
 	);
 }
