@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => {
 					output: {
 						dir: "./dist/static",
 						entryFileNames: "client.js",
+						assetFileNames: "style.css",
 					},
 				},
 				copyPublicDir: false,
