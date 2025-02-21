@@ -165,7 +165,7 @@ function WorkComponent() {
 				<WorksBlockComponent
 					name="dorimiamn's Portfolio"
 					comments="このサイトです。"
-					link="https://dorimiamn.github.io/"
+					link="https://dorimiamn-dev.pages.dev/"
 				/>
 			</div>
 		</div>
