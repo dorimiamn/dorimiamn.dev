@@ -1,5 +1,5 @@
 import { createRoot } from "hono/jsx/dom/client";
-import { Profile } from "./clients/profile";
+import Profile from "./components/profile";
 
 import Header from "./components/header";
 

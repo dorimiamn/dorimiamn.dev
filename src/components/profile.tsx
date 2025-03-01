@@ -172,7 +172,7 @@ function WorkComponent() {
 	);
 }
 
-export function Profile() {
+export default function Profile() {
 	return (
 		<>
 			<MyProfileComponent />
