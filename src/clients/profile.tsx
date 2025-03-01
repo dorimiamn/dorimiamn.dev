@@ -96,8 +96,8 @@ function MySkillComponent() {
 					comments="バイトや個人で使っています。最近型の楽しさがなんとなくわかってきた。"
 				/>
 				<CardBlockComponent
-					name="Next.js"
-					comments="このサイトの作成に使用。React 含めてちょこちょこお世話になりそう。"
+					name="Hono + JSX"
+					comments="このサイトの作成に使用。Hono と Cloudflare に習熟したい！"
 				/>
 			</div>
 		</div>
