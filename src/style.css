@@ -1,6 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Antique+Soft&display=swap');
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Shippori+Antique+B1&display=swap');
 
 body {
-  font-family: 'Shippori Antique B1', sans-serif;
+  font-family: 'Zen Antique Soft', sans-serif;
 }
