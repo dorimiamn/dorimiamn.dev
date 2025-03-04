@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import { Hono } from "hono";
 import type { FC } from "hono/jsx";
-import { renderToString } from "hono/jsx/dom/server";
 
 import markdownIt from "markdown-it";
 
@@ -43,12 +42,6 @@ const Layout: FC = (props) => {
 };
 
 const app = new Hono();
-
-app.get("/api/clock", (c) => {
-	return c.json({
-		time: new Date().toLocaleTimeString(),
-	});
-});
 
 app.get("/", (c) => {
 	return c.html(
