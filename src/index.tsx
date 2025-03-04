@@ -1,13 +1,16 @@
+import fs from "node:fs";
 import { Hono } from "hono";
 import type { FC } from "hono/jsx";
 import { renderToString } from "hono/jsx/dom/server";
 
-import markdownit from "markdown-it";
+import markdownIt from "markdown-it";
 
+import BlogList from "./components/blog";
+import { md5Hash } from "./components/blog";
 import Header from "./components/header";
 import Profile from "./components/profile";
 
-const md = markdownit();
+const md = markdownIt();
 
 const Layout: FC = (props) => {
 	return (
@@ -47,29 +50,6 @@ app.get("/api/clock", (c) => {
 	});
 });
 
-// ブログ記事一覧を取得
-app.get("/api/blog", (c) => {
-	const blogs = [
-		{ id: 1, title: "ブログ記事1", summary: "これはブログ記事1の概要です。" },
-		{ id: 2, title: "ブログ記事2", summary: "これはブログ記事2の概要です。" },
-	];
-	return c.json({
-		blogs,
-	});
-});
-
-// ブログ記事を取得
-app.get("/api/blog/:id", (c) => {
-	const blog = md.render(`
-# これはブログ記事です
-
-これはブログ記事の内容です。
-  `);
-	return c.json({
-		blog,
-	});
-});
-
 app.get("/", (c) => {
 	return c.html(
 		<Layout>
@@ -81,16 +61,35 @@ app.get("/", (c) => {
 app.get("/blog", (c) => {
 	return c.html(
 		<Layout>
-			<div class="container mx-auto my-10">
-				<h1 className="text-2xl text-center">Blog</h1>
-				<ul>
-					<li>
-						<a href="/blog/1">ブログ記事1</a>
-					</li>
-					<li>
-						<a href="/blog/2">ブログ記事2</a>
-					</li>
-				</ul>
+			<BlogList />
+		</Layout>,
+	);
+});
+
+app.get("/blog/:id", (c) => {
+	const blogIdHash = c.req.param("id");
+	const filesAndHashes = fs.readdirSync("md").map((file) => {
+		const fileName = file.replace(/\.md$/, "");
+		const fileHash = md5Hash(fileName);
+		return { fileName, fileHash };
+	});
+
+	const target = filesAndHashes.find(({ fileHash }) => fileHash === blogIdHash);
+
+	if (!target) {
+		return c.notFound();
+	}
+
+	const file = fs.readFileSync(`md/${target.fileName}.md`, "utf-8");
+	const blog = md.render(file);
+
+	return c.html(
+		<Layout>
+			<div class="container mx-auto my-20">
+				<article>
+					{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+					<div dangerouslySetInnerHTML={{ __html: blog }} />
+				</article>
 			</div>
 		</Layout>,
 	);

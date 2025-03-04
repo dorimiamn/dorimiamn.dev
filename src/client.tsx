@@ -15,6 +15,6 @@ function App() {
 }
 
 // biome-ignore lint/style/noNonNullAssertion: DOM ノードは存在するはずなので
-const domNode = document.getElementById("root")!;
-const root = createRoot(domNode);
-root.render(<App />);
+// const domNode = document.getElementById("root")!;
+// const root = createRoot(domNode);
+// root.render(<App />);
