@@ -54,7 +54,7 @@ app.get("/blog", (c) => {
 		<Layout>
 			<div class="container mx-auto my-10">
 				<h1 class="text-2xl text-center">Blog</h1>
-				<ul>
+				<ul class="mt-8">
 					{blogs.map(({ title, id }) => (
 						<li key={id}>
 							<a href={`blog/${id}`}>{title}</a>
@@ -86,10 +86,11 @@ app.get(
 		return c.html(
 			<Layout>
 				<div class="container mx-auto my-20">
-					<article>
-						{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
-						<div dangerouslySetInnerHTML={{ __html: blog.content }} />
-					</article>
+					{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+					<article
+						class="blog"
+						dangerouslySetInnerHTML={{ __html: blog.content }}
+					/>
 				</div>
 			</Layout>,
 		);
