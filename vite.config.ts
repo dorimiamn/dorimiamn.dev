@@ -11,10 +11,9 @@ export default defineConfig(({ mode }) => {
 			plugins: [tailwindcss(), ssg()],
 			build: {
 				rollupOptions: {
-					input: ["./src/client.tsx", "./src/style.css"],
+					input: ["./src/style.css"],
 					output: {
 						dir: "./dist/static",
-						entryFileNames: "client.js",
 						assetFileNames: "style.css",
 					},
 				},
