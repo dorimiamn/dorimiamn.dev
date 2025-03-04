@@ -4,25 +4,29 @@ import ssg from "@hono/vite-ssg";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "vite";
 
-export default defineConfig(() => {
+export default defineConfig(({ mode }) => {
+	if (mode === "client") {
+		return {
+			plugins: [tailwindcss(), ssg()],
+			build: {
+				rollupOptions: {
+					input: ["src/style.css"],
+					output: {
+						dir: "dist/static",
+						assetFileNames: "[name].css",
+					},
+				},
+			},
+		};
+	}
 	return {
 		plugins: [
-			tailwindcss(),
 			ssg(),
 			devServer({
 				adapter,
 				entry: "src/index.tsx",
 			}),
+			tailwindcss(),
 		],
-		build: {
-			rollupOptions: {
-				input: ["src/style.css", "src/client.tsx"],
-				output: {
-					dir: "dist/static",
-					entryFileNames: "client.js",
-					assetFileNames: "client.css",
-				},
-			},
-		},
 	};
 });
