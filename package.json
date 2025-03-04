@@ -24,6 +24,7 @@
 		"@hono/vite-build": "^1.2.0",
 		"@hono/vite-dev-server": "^0.18.1",
 		"@hono/vite-ssg": "^0.1.1",
+		"@shikijs/markdown-it": "^3.1.0",
 		"@types/markdown-it": "^14.1.2",
 		"@types/node": "^22.13.8",
 		"husky": "^9.1.7",
