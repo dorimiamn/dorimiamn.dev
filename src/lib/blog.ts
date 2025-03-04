@@ -26,7 +26,7 @@ function md5Hash(str: string): string {
 	return createHash("md5").update(str).digest("hex");
 }
 
-export default function renderBlog() {
+export default async function renderBlog() {
 	const blogs: Blog[] = [];
 	const files = fs.readdirSync("md").map((file) => file.replace(/\.md$/, ""));
 	for (const file of files) {

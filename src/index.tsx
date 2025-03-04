@@ -7,7 +7,7 @@ import Profile from "./components/profile";
 
 import renderBlog from "./lib/blog";
 
-const blogs = renderBlog();
+const blogs = await renderBlog();
 
 const Layout: FC = (props) => {
 	return (
@@ -17,11 +17,6 @@ const Layout: FC = (props) => {
 					<link rel="stylesheet" href="/static/style.css" />
 				) : (
 					<link rel="stylesheet" href="/src/style.css" />
-				)}
-				{import.meta.env.PROD ? (
-					<script type="module" src="/static/client.js" />
-				) : (
-					<script type="module" src="/src/client.tsx" />
 				)}
 				<link
 					rel="shortcut icon"
