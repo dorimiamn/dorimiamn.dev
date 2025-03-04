@@ -23,10 +23,12 @@
 		"@cloudflare/workers-types": "^4.20241218.0",
 		"@hono/vite-build": "^1.2.0",
 		"@hono/vite-dev-server": "^0.18.1",
+		"@hono/vite-ssg": "^0.1.1",
 		"@types/markdown-it": "^14.1.2",
+		"@types/node": "^22.13.8",
 		"husky": "^9.1.7",
 		"lint-staged": "^15.4.3",
-		"vite": "^5.4.12",
+		"vite": "^5.4.14",
 		"wrangler": "^3.96.0"
 	}
 }
