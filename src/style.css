@@ -4,3 +4,15 @@
 body {
   font-family: 'Zen Antique Soft', sans-serif;
 }
+
+.blog h1 {
+  @apply text-2xl my-4;
+}
+
+.blog h2 {
+  @apply text-xl my-4;
+}
+
+.blog p {
+  @apply my-4;
+}
