@@ -16,3 +16,7 @@ body {
 .blog p {
   @apply my-4;
 }
+
+.blog pre:has(code) {
+  @apply p-4;
+}

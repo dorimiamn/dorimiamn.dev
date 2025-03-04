@@ -2,6 +2,7 @@
 
 import { createHash } from "node:crypto";
 import fs from "node:fs";
+import Shiki from "@shikijs/markdown-it";
 import MarkdownIt from "markdown-it";
 
 type Blog = {
@@ -11,6 +12,15 @@ type Blog = {
 };
 
 const md = new MarkdownIt();
+
+md.use(
+	await Shiki({
+		themes: {
+			light: "tokyo-night",
+			dark: "vitesse-dark",
+		},
+	}),
+);
 
 function md5Hash(str: string): string {
 	return createHash("md5").update(str).digest("hex");
