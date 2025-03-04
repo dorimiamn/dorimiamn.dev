@@ -86,9 +86,9 @@ app.get(
 		return c.html(
 			<Layout>
 				<div class="container mx-auto my-20">
-					{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
 					<article
 						class="blog"
+						// biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation>
 						dangerouslySetInnerHTML={{ __html: blog.content }}
 					/>
 				</div>
