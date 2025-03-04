@@ -1,15 +1,13 @@
-import fs from "node:fs";
 import { Hono } from "hono";
 import type { FC } from "hono/jsx";
 
-import markdownIt from "markdown-it";
-
-import BlogList from "./components/blog";
-import { md5Hash } from "./components/blog";
+import { ssgParams } from "hono/ssg";
 import Header from "./components/header";
 import Profile from "./components/profile";
 
-const md = markdownIt();
+import renderBlog from "./lib/blog";
+
+const blogs = renderBlog();
 
 const Layout: FC = (props) => {
 	return (
@@ -54,39 +52,49 @@ app.get("/", (c) => {
 app.get("/blog", (c) => {
 	return c.html(
 		<Layout>
-			<BlogList />
-		</Layout>,
-	);
-});
-
-app.get("/blog/:id", (c) => {
-	const blogIdHash = c.req.param("id");
-	const filesAndHashes = fs.readdirSync("md").map((file) => {
-		const fileName = file.replace(/\.md$/, "");
-		const fileHash = md5Hash(fileName);
-		return { fileName, fileHash };
-	});
-
-	const target = filesAndHashes.find(({ fileHash }) => fileHash === blogIdHash);
-
-	if (!target) {
-		return c.notFound();
-	}
-
-	const file = fs.readFileSync(`md/${target.fileName}.md`, "utf-8");
-	const blog = md.render(file);
-
-	return c.html(
-		<Layout>
-			<div class="container mx-auto my-20">
-				<article>
-					{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
-					<div dangerouslySetInnerHTML={{ __html: blog }} />
-				</article>
+			<div class="container mx-auto my-10">
+				<h1 class="text-2xl text-center">Blog</h1>
+				<ul>
+					{blogs.map(({ title, id }) => (
+						<li key={id}>
+							<a href={`blog/${id}`}>{title}</a>
+						</li>
+					))}
+				</ul>
 			</div>
 		</Layout>,
 	);
 });
+
+app.get(
+	"/blog/:id",
+	ssgParams(async () => {
+		return blogs.map(({ id }) => {
+			return {
+				id: id,
+			};
+		});
+	}),
+	(c) => {
+		const blogIdHash = c.req.param("id");
+		const blog = blogs.find(({ id }) => id === blogIdHash);
+
+		if (!blog) {
+			return c.notFound();
+		}
+
+		return c.html(
+			<Layout>
+				<div class="container mx-auto my-20">
+					<article>
+						{/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+						<div dangerouslySetInnerHTML={{ __html: blog.content }} />
+					</article>
+				</div>
+			</Layout>,
+		);
+	},
+);
 
 app.notFound((c) => {
 	return c.html(
