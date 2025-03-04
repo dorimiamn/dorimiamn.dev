@@ -7,19 +7,20 @@ import { defineConfig } from "vite";
 export default defineConfig(() => {
 	return {
 		plugins: [
+			tailwindcss(),
 			ssg(),
 			devServer({
 				adapter,
 				entry: "src/index.tsx",
 			}),
-			tailwindcss(),
 		],
 		build: {
 			rollupOptions: {
-				input: ["src/style.css"],
+				input: ["src/style.css", "src/client.tsx"],
 				output: {
 					dir: "dist/static",
-					assetFileNames: "[name].css",
+					entryFileNames: "client.js",
+					assetFileNames: "client.css",
 				},
 			},
 		},
