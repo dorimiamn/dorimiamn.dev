@@ -27,7 +27,6 @@
 		"@shikijs/markdown-it": "^3.1.0",
 		"@types/markdown-it": "^14.1.2",
 		"@types/node": "^22.13.8",
-		"husky": "^9.1.7",
 		"lint-staged": "^15.4.3",
 		"vite": "^5.4.14",
 		"wrangler": "^3.96.0"
