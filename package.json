@@ -6,11 +6,7 @@
 		"build": "vite build",
 		"check": "biome check --write",
 		"preview": "wrangler pages dev",
-		"deploy": "npm run build && wrangler pages deploy",
-		"prepare": "husky"
-	},
-	"lint-staged": {
-		"*.{ts,tsx}": "biome check --write"
+		"deploy": "npm run build && wrangler pages deploy"
 	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.0.5",
