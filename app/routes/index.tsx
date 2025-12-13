@@ -31,10 +31,10 @@ function CardBlockComponent({
 }: { name: string; comments: string }) {
 	return (
 		<div className="grid lg:grid-cols-3 my-3">
-			<h3 className="text-2xl break-words md:mr-6 mt-0 mb-3 md:my-auto whitespace-pre-wrap">
+			<h3 className="text-2xl wrap-break-word md:mr-6 mt-0 mb-3 md:my-auto whitespace-pre-wrap">
 				{name}
 			</h3>
-			<p className="col-span-2 text-base break-words mb-0 mt-auto whitespace-pre-wrap">
+			<p className="col-span-2 text-base wrap-break-word mb-0 mt-auto whitespace-pre-wrap">
 				{comments}
 			</p>
 		</div>
