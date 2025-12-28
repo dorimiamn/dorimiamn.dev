@@ -1,30 +1,38 @@
-import devServer from "@hono/vite-dev-server";
-import adapter from "@hono/vite-dev-server/cloudflare";
+import { defineConfig } from 'vite';
+import honox from 'honox/vite';
+import tailwindcss from '@tailwindcss/vite';
 import ssg from "@hono/vite-ssg";
-import tailwindcss from "@tailwindcss/vite";
-import { defineConfig } from "vite";
+import build from "@hono/vite-build/cloudflare-workers";
+import client from "honox/vite/client";
+import adapter from "@hono/vite-dev-server/cloudflare";
 
-const entry = "src/index.tsx";
-
-export default defineConfig(() => {
-	return {
-		plugins: [
-			devServer({
-				adapter,
-				entry: entry,
-			}),
-			ssg({ entry: entry }),
-			tailwindcss(),
-		],
-		build: {
-			rollupOptions: {
-				input: "src/style.css",
-				output: [
-					{
-						assetFileNames: "static/style.css",
-					},
-				],
-			},
-		},
-	};
+export default defineConfig(({ mode }) => {
+  if (mode === "client") {
+    return {
+      plugins: [
+        tailwindcss(),
+        client({
+          input: ["/app/client.ts", "/app/style.css"],
+        }),
+      ],
+    };
+  }
+  return {
+    plugins: [
+      honox({
+        devServer: { adapter },
+        client: {
+          input: [
+            "/app/client.ts",
+            '/app/style.css', // add the style file entrypoint
+          ],
+        },
+      }),
+      tailwindcss(),
+      build(),
+      ssg({
+        entry: "/app/server.ts",
+      }),
+    ],
+  }
 });
