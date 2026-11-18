@@ -1,3 +1,37 @@
 @import 'tailwindcss';
 
+@theme {
+  --animate-tilt-in: tilt-in 0.4s ease-out;
 
+  @keyframes tilt-in {
+    0% {
+      rotate: -20deg;
+    }
+    60% {
+      rotate: 3deg;
+    }
+    80% {
+      rotate: -2deg;
+    }
+    100% {
+      rotate: 0deg;
+    }
+  }
+}
+
+@layer components {
+  .tilt-card {
+    @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+      scale: 1;
+      transform: perspective(600px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+      transition:
+        scale 0.2s ease-out,
+        transform 0.3s ease-out;
+
+      .tilt-area:hover & {
+        scale: 1.05;
+        transition-duration: 0.2s, 0.1s;
+      }
+    }
+  }
+}
