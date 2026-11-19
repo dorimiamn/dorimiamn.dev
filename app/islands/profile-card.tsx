@@ -37,7 +37,7 @@ export default function ProfileCard() {
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
     >
-      <div class="tilt-card flex flex-row items-center justify-center gap-4 p-4 border-2 border-green-100 rounded-xl">
+      <div class="tilt-card flex flex-row items-center justify-center gap-4 p-4 border-2 border-gray-50 rounded-xl">
         <img
           class="rounded-full object-contain"
           src="/profile_icon_square.jpg"
@@ -46,7 +46,7 @@ export default function ProfileCard() {
           alt="dorimiamn's icon"
         />
         <div class="flex flex-col">
-          <span class="text-4xl">dorimiamn</span>
+          <span class="text-4xl text-gray-50">dorimiamn</span>
         </div>
       </div>
     </div>

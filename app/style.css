@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
+  --color-dark-purple: #1a1b1c;
+
   --animate-tilt-in: tilt-in 0.4s ease-out;
 
   @keyframes tilt-in {

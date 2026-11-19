@@ -13,7 +13,7 @@ export default jsxRenderer(({ children }) => {
         <Script src='/app/client.ts' />
         <Link href="/app/style.css" rel="stylesheet" />
       </head>
-      <body>{children}</body>
+      <body class="bg-dark-purple">{children}</body>
     </html>
   )
 })
