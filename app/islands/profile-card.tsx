@@ -2,8 +2,7 @@ import { useRef } from "hono/jsx";
 
 const MAX_TILT_DEG = 10;
 
-const clamp = (value: number, min: number, max: number) =>
-  Math.min(Math.max(value, min), max);
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
 export default function ProfileCard() {
   const rectRef = useRef<DOMRect | null>(null);
