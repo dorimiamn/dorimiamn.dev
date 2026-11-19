@@ -1,8 +1,17 @@
-```txt
-npm install
-npm run dev
-```
+# dorimiamn.dev
 
-```txt
-npm run deploy
-```
+
+dorimiman のポートフォリオサイト用のリポジトリです。
+
+https://dorimiamn.dev/
+
+## 技術スタック
+
+- TypeScript
+- HonoX
+- Cloudflare
+
+## ロードマップ
+
+
+1. ブログ機能の追加
